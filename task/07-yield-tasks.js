@@ -33,7 +33,16 @@
  *
  */
 function* get99BottlesOfBeer() {
-    throw new Error('Not implemented');
+    let i = 99;
+    while (i > 1) {
+        yield `${i} bottles of beer on the wall, ${i} bottles of beer.`
+        yield `Take one down and pass it around, ${i-1} ${i-2 ? `bottles` : `bottle`} of beer on the wall.`;
+        i--;
+    }
+    yield '1 bottle of beer on the wall, 1 bottle of beer.';
+    yield 'Take one down and pass it around, no more bottles of beer on the wall.';
+    yield 'No more bottles of beer on the wall, no more bottles of beer.';
+    yield 'Go to the store and buy some more, 99 bottles of beer on the wall.';
 }
 
 
@@ -47,7 +56,19 @@ function* get99BottlesOfBeer() {
  *
  */
 function* getFibonacciSequence() {
-    throw new Error('Not implemented');
+    yield 0;
+    yield 1;
+
+    let fib1 = 0,
+        fib2 = 1,
+        fib;
+
+    while (true) {
+        fib = fib1 + fib2;
+        fib1 = fib2;
+        fib2 = fib;
+        yield fib;
+    }
 }
 
 
@@ -82,7 +103,16 @@ function* getFibonacciSequence() {
  *
  */
 function* depthTraversalTree(root) {
-    throw new Error('Not implemented');
+    let nodes = [root];
+    while (nodes.length) {
+        let node = nodes.pop();
+        yield node;
+        if (!node.children) {
+            continue;
+        }
+        
+        nodes = nodes.concat(node.children.reverse());
+    }
 }
 
 
@@ -108,7 +138,17 @@ function* depthTraversalTree(root) {
  *
  */
 function* breadthTraversalTree(root) {
-    throw new Error('Not implemented');
+    let nodes = [root];
+
+    while(nodes.length) {
+        let node = nodes.pop();
+        yield node;
+        if (!node.children) {
+          continue;
+        }
+
+        nodes = node.children.reverse().concat(nodes);
+    }
 }
 
 
@@ -126,7 +166,21 @@ function* breadthTraversalTree(root) {
  *   [ 1, 3, 5, ... ], [ -1 ] => [ -1, 1, 3, 5, ...]
  */
 function* mergeSortedSequences(source1, source2) {
-    throw new Error('Not implemented');
+    
+    let gen1 = source1(),
+        gen2 = source2(),
+        cur1 = gen1.next(),
+        cur2 = gen2.next();
+
+    while (!cur1.done || !cur2.done) {
+        if (cur2.done || cur1.value < cur2.value) {
+            yield cur1.value;
+            cur1 = gen1.next();
+        } else {
+            yield cur2.value;
+            cur2 = gen2.next();
+        }
+    }
 }
 
 
