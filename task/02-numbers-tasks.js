@@ -145,6 +145,7 @@ function parseNumberFromString(value) {
     return parseFloat(value);
 }
 
+
 /**
  * Returns a diagonal length of the rectangular parallelepiped given by its sides a,b,c.
  *
@@ -159,11 +160,9 @@ function parseNumberFromString(value) {
  *   1,2,3   => 3.741657386773941
  */
 function getParallelipidedDiagonal(a,b,c) {
-    let d1 = Math.sqrt(b**2 + c**2),
-        d2 = Math.sqrt(a**2 + d1**2);
-
-    return d2;
+        return Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(c, 2));
 }
+
 
 /**
  * Returns the number rounded to specified power of 10.
