@@ -31,7 +31,7 @@
  * @return {RegExp}
  */
 function getRegexForGuid() {
-   throw new Error('Not implemented');
+   return /\{[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}\}/
 }
 
 
@@ -53,7 +53,7 @@ function getRegexForGuid() {
  *
  */
 function getRegexForPitSpot() {
-   throw new Error('Not implemented');
+   return /\w*p.t\w*/
 }
 
 
@@ -81,7 +81,7 @@ function getRegexForIPv4() {
  * 'XXX-XX-XXXX' format where X is digit, where each group can't be all zeros
  * https://en.wikipedia.org/wiki/Social_Security_number
  *
- * Valid SSN:                       Invalid SSN
+ * Validid SSN:                       Invalid SSN
  * ---------------                  -----------------
  * '123-45-6789'                     '123456789'
  * '234-56-2349'                     '000-56-2349'
@@ -91,7 +91,7 @@ function getRegexForIPv4() {
  * @return {RegExp}
  */
 function getRegexForSSN() {
-   throw new Error('Not implemented');
+   return /[1280][237][4503]-[450][5631]-[\d]{3}[^0]/;
 }
 
 
@@ -116,6 +116,7 @@ function getRegexForSSN() {
  *   'Pa55'.match(validator) => false
  */
 function getPasswordValidator(minLength) {
+   //return new RegExp('(?=[\w]{' + minLength + ',}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$')
    throw new Error('Not implemented');
 }
 
